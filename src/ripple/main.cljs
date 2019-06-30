@@ -5,7 +5,7 @@
 
 (def *b (atom 2))
 
-(defcomputed *c (*a *b) (+ *a *b))
+(defcomputed *c (*a *b) (+ %a %b))
 
 (defn *d [] )
 
@@ -15,6 +15,6 @@
   (comment add-watch *c :start (fn [] (println "c" @*c)))
   (reset! *a 2)
   (println "c0" @*c)
-  (comment println (macroexpand '(defcomputed *c (*a *b) (+ *a *b)))))
+  (comment (macroexpand '(defcomputed *c (*a *b) (+ %a %b)))))
 
 (defn reload! [] (comment .clear js/console) (println "reloaded."))
